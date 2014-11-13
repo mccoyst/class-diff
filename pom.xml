@@ -7,6 +7,22 @@
   <version>1.0-SNAPSHOT</version>
   <name>class-diff</name>
   <url>https://github.com/mccoyst/class-diff</url>
+  <build>
+    <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <configuration>
+        <archive>
+          <manifest>
+          <mainClass>mccoyst.App</mainClass>
+          <addClasspath>true</addClasspath>
+          </manifest>
+        </archive>
+      </configuration>
+    </plugin>
+    </plugins>
+  </build>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -18,6 +34,7 @@
       <groupId>org.ow2.asm</groupId>
       <artifactId>asm</artifactId>
       <version>5.0.3</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 </project>

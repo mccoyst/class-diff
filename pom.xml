@@ -7,6 +7,9 @@
   <version>1.0-SNAPSHOT</version>
   <name>class-diff</name>
   <url>https://github.com/mccoyst/class-diff</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <build>
     <plugins>
     <plugin>

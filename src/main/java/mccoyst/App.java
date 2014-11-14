@@ -1,11 +1,42 @@
 package mccoyst;
 
+import java.io.*;
+import java.util.*;
+
 import org.objectweb.asm.*;
 
 public class App{
     public static void main(String[] args) throws Exception{
-		ClassPrinter cp = new ClassPrinter();
-		ClassReader cr = new ClassReader("java.lang.String");
-		cr.accept(cp, 0);
+		if(args.length < 2){
+			System.err.println("I need the names of two class files.");
+			System.exit(1);
+		}
+
+		InputStream a = new FileInputStream(args[0]);
+		MethodCollector ma = new MethodCollector();
+		InputStream b = new FileInputStream(args[1]);
+		MethodCollector mb = new MethodCollector();
+
+		try{
+			ClassReader cra = new ClassReader(a);
+			cra.accept(ma, 0);
+
+			ClassReader crb = new ClassReader(b);
+			crb.accept(mb, 0);
+		}finally{
+			a.close();
+			b.close();
+		}
+
+		List<Method> newer = new ArrayList<Method>();
+		for(Method m : mb.methods){
+			if(!ma.methods.contains(m)){
+				newer.add(m);
+			}
+		}
+
+		for(Method m : newer){
+			System.out.println(m);
+		}
     }
 }

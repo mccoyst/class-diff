@@ -1,15 +1,19 @@
 package mccoyst;
 
+import java.util.*;
+
 import org.objectweb.asm.*;
 
-public class ClassPrinter extends ClassVisitor{
-	public ClassPrinter(){
+public class MethodCollector extends ClassVisitor{
+	public final Set<Method> methods;
+
+	public MethodCollector(){
 		super(Opcodes.ASM5);
+		methods = new HashSet<Method>();
 	}
 
 	public void visit(int version, int access, String name,
 			String signature, String superName, String[] interfaces){
-		System.out.println(name);
 	}
 
 	public void visitSource(String source, String debug){
@@ -36,7 +40,7 @@ public class ClassPrinter extends ClassVisitor{
 
 	public MethodVisitor visitMethod(int access, String name,
 			String desc, String signature, String[] exceptions){
-		System.out.println("	" + name + desc);
+		methods.add(new Method(name, desc));
 		return null;
 	}
 

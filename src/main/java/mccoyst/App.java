@@ -28,14 +28,8 @@ public class App{
 			b.close();
 		}
 
-		List<Method> newer = new ArrayList<Method>();
+		mb.methods.removeAll(ma.methods);
 		for(Method m : mb.methods){
-			if(!ma.methods.contains(m)){
-				newer.add(m);
-			}
-		}
-
-		for(Method m : newer){
 			System.out.println(m);
 		}
     }

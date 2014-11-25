@@ -5,6 +5,7 @@ import java.util.*;
 
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -19,6 +20,13 @@ public class AppTest {
 		ByteArrayInputStream bs = new ByteArrayInputStream(Base64.decodeBase64(methodClass));
 		Set<Method> m = App.readMethods(bs);
 		assertEquals(m, expected);
+	}
+
+	@Test public void testIdentity() throws Exception{
+		ByteArrayInputStream a = new ByteArrayInputStream(Base64.decodeBase64(methodClass));
+		ByteArrayInputStream b = new ByteArrayInputStream(Base64.decodeBase64(methodClass));
+		Set<Method> m = App.findNewMethods(a, b);
+		assertTrue(m.isEmpty());
 	}
 
 	final String methodClass =

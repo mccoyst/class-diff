@@ -39,6 +39,16 @@ public class AppTest {
 		assertEquals(m, expected);
 	}
 
+	@Test public void testLostNewMethod() throws Exception{
+		Set<Method> expected = new HashSet<Method>();
+
+		ByteArrayInputStream a = new ByteArrayInputStream(Base64.decodeBase64(methodClassPlusExtra));
+		ByteArrayInputStream b = new ByteArrayInputStream(Base64.decodeBase64(methodClass));
+		Set<Method> m = App.findNewMethods(a, b);
+		assertEquals(m, expected);
+
+	}
+
 	final String methodClass =
 "yv66vgAAADMAPAoADwAqBwArCAAQCgACACwIABIJAAgALQkACAAuBwAvCgAwADEKADAAMgcAMwoA" +
 "CwAqCgALADQKAAsANQcANgEABG5hbWUBABJMamF2YS9sYW5nL1N0cmluZzsBAARkZXNjAQAGPGlu" +
